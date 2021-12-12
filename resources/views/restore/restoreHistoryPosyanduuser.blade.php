@@ -271,7 +271,7 @@ $(document).ready(function()
 <body>
     <div class="container">
         <div class="card-header py-3" style="margin: 20px">
-            <a type="button" class="btn btn-primary" href="/historyPosyandu">Kembali</a>
+            <a type="button" class="btn btn-primary" href="/historyPosyanduuser">Kembali</a>
         </div>
         <div class="table-wrapper">
             <div class="table-title">
@@ -304,7 +304,7 @@ $(document).ready(function()
                         <td>{{ $item->BERAT_BADAN_BALITA }}</td>
                         <td>{{ $item->TINGGI_BADAN }}</td>
                         <td>{{ $item->DELETED_AT }}</td>
-                        <td><a type="button" class="btn btn-success" href="/historyPosyandu/restore/{{ $item->ID_HISTORY_POSYANDU }}" style="color: white" onclick="return confirm('Apakah anda ingin memulihkannya?')">Restore</a></td>                                         
+                        <td><a type="button" class="btn btn-success" href="/historyPosyanduuser/restore/{{ $item->ID_HISTORY_POSYANDU }}" style="color: white" onclick="return confirm('Apakah anda ingin memulihkannya?')">Restore</a></td>                                         
                 </tr>
                     @endforeach       
                 </tbody>

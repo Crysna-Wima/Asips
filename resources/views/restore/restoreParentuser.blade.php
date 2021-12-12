@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Restore History Balita</title>
+<title>Restore Parent</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -271,42 +271,40 @@ $(document).ready(function()
 <body>
     <div class="container">
         <div class="card-header py-3" style="margin: 20px">
-            <a type="button" class="btn btn-primary" href="/historyPosyandu">Kembali</a>
+            <a type="button" class="btn btn-primary" href="/parents">Kembali</a>
         </div>
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Restore <b>History Balita</b></h2>
+                        <h2>Restore <b>Parent</b></h2>
                     </div>
                 </div>
             </div>
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th>ID_HISTORY_POSYANDU</th>
-                    <th>ID_BALITA</th>
-                    <th>ID_USER</th>
-                    <th>TGL_POSYANDU</th>
-                    <th>BERAT_BADAN_BALITA</th>
-                    <th>TINGGI_BADAN</th>
-                    <th>DELETED_AT</th>
-                    <th>ACTION</th>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Deleted_at</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ($restorehistory as $item)
+                    @foreach ($restoreparent as $item)
                     <tr>
-                        <td>{{ $item->ID_HISTORY_POSYANDU }}</td>
-                        <td>{{ $item->ID_BALITA }}</td>
-                        <td>{{ $item->ID_USER }}</td>
-                        <td>{{ $item->TGL_POSYANDU }}</td>
-                        <td>{{ $item->BERAT_BADAN_BALITA }}</td>
-                        <td>{{ $item->TINGGI_BADAN }}</td>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->username }}</td>
+                        <td>{{ $item->email }}</td>
+                        <td>{{ $item->password }}</td>
                         <td>{{ $item->DELETED_AT }}</td>
-                        <td><a type="button" class="btn btn-success" href="/historyPosyandu/restore/{{ $item->ID_HISTORY_POSYANDU }}" style="color: white" onclick="return confirm('Apakah anda ingin memulihkannya?')">Restore</a></td>                                         
-                </tr>
-                    @endforeach       
+                        <td><a type="button" class="btn btn-success" style="color: white" href="/parentsuser/restore/{{ $item->id }}" onclick="return confirm('Apakah anda ingin memulihkannya?')">Restore</a></td>                                         
+                    </tr>
+                    @endforeach      
                 </tbody>
             </table>
    <div class="clearfix">

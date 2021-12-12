@@ -73,8 +73,8 @@
                                             <td>{{ $item->ID_ROLE }}</td>
                                             <td>{{ $item->ROLE }}</td>
                                             <td>
-                                                <a href="/role/edit/{{ $item->ID_ROLE }}"> <img src="assets/img/edit.svg" alt="edit" style="max-width: 10%;"></a> |
-                                                <a href="/role/hapus/{{ $item->ID_ROLE }}" onclick="return confirm('Apakah anda ingin menghapusnya?')"> <img src="assets/img/delete.svg" alt="hapus" style="max-width: 7%;"></a>
+                                                <a href="/role/edit/{{ $item->ID_ROLE }}"> <img src="assets/img/edit.svg" alt="edit" style="max-width: 5%;"></a> |
+                                                <a href="/role/hapus/{{ $item->ID_ROLE }}" onclick="return confirm('Apakah anda ingin menghapusnya?')"> <img src="assets/img/delete.svg" alt="hapus" style="max-width: 5%;"></a>
                                             </td>                                         
                                         </tr>
                                         @endforeach                                       

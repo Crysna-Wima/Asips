@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class usersController extends Controller
+class parentsController extends Controller
 {
     public function index(){
-        $editor = DB::table('users')->where('DELETED_AT',null)->where('level','editor')->get();
-        return view('dashboard.users',['editor' => $editor]);
+        $parent = DB::table('users')->where('DELETED_AT',null)->where('level','parent')->get();
+        return view('dashboard.parents',['parent' => $parent]);
     }
     public function store(Request $request){
         $request ->validate([
@@ -20,16 +20,16 @@ class usersController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
-            'level' => 'editor',
+            'level' => 'parent',
             'password' => bcrypt($request->password),
             'CREATED_AT' => date('Y-m-d H:i:s'),
             'UPDATED_AT' => date('Y-m-d H:i:s'),
         ]);
-        return redirect('/users')->with('tambah','Data berhasil ditambahkan');
+        return redirect('/parents')->with('tambah','Data berhasil ditambahkan');
     }
     public function edit($id){
-        $editor = DB::table('users')->where('id',$id)->get();
-        return view('edit.editUser',['editor' => $editor]);
+        $parent = DB::table('users')->where('id',$id)->get();
+        return view('edit.editParent',['parent' => $parent]);
     }
     public function update(Request $request){
         $request ->validate([
@@ -40,11 +40,11 @@ class usersController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
-            'level' => 'editor',
+            'level' => 'parent',
             'password' => bcrypt($request->password),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        return redirect('/users')->with('edit','Data berhasil diubah');
+        return redirect('/parents')->with('edit','Data berhasil diubah');
     }
     public function hapus($id){
         date_default_timezone_set('Asia/Jakarta');
@@ -52,7 +52,7 @@ class usersController extends Controller
             'DELETED_AT' => date('Y-m-d H:i:s')
         ]);
  
-    	return redirect('/users')->with('hapus','Data berhasil dihapus');
+    	return redirect('/parents')->with('hapus','Data berhasil dihapus');
     }
 
     public function back($id){
@@ -60,11 +60,11 @@ class usersController extends Controller
             'DELETED_AT' => null
         ]);
 
-        return redirect('/users')->with('back','Data berhasil dipulihkan');
+        return redirect('/parents')->with('back','Data berhasil dipulihkan');
     }
 
     public function restore(){
-        $restoreuser = DB::table('users')->where('DELETED_AT','!=',null)->where('level','editor')->get();
-        return view('restore.restoreUsers',['restoreuser' => $restoreuser]);
+        $restoreparent = DB::table('users')->where('DELETED_AT','!=',null)->where('level','parent')->get();
+        return view('restore.restoreparent',['restoreparent' => $restoreparent]);
     }
 }

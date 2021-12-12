@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class EditorController extends Controller
+class ParentController extends Controller
 {
     public function index()
     {
-        return view('dashboardAdmin');
+        return redirect('/historyposyanduparent');
     }
 }

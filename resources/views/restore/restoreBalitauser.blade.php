@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Restore History Balita</title>
+<title>Restore Balita</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -271,41 +271,45 @@ $(document).ready(function()
 <body>
     <div class="container">
         <div class="card-header py-3" style="margin: 20px">
-            <a type="button" class="btn btn-primary" href="/historyPosyandu">Kembali</a>
+            <a type="button" class="btn btn-primary" href="/balitauser">Kembali</a>
         </div>
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Restore <b>History Balita</b></h2>
+                        <h2>Restore <b>Balita</b></h2>
                     </div>
                 </div>
             </div>
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th>ID_HISTORY_POSYANDU</th>
-                    <th>ID_BALITA</th>
-                    <th>ID_USER</th>
-                    <th>TGL_POSYANDU</th>
-                    <th>BERAT_BADAN_BALITA</th>
-                    <th>TINGGI_BADAN</th>
-                    <th>DELETED_AT</th>
-                    <th>ACTION</th>
+                    <th>ID_Balita</th>
+                            <th>ID_Posyandu</th>
+                            <th>Nama_Balita</th>
+                            <th>NIK_Orang_Tua</th>
+                            <th>Nama_Orang_Tua</th>
+                            <th>Tgl_Lahir</th>
+                            <th>Jenis_Kelamin</th>
+                            <th>Status</th>
+                            <th>Deleted_at</th>
+                            <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ($restorehistory as $item)
+                    @foreach ($restorebalita as $item)
                     <tr>
-                        <td>{{ $item->ID_HISTORY_POSYANDU }}</td>
                         <td>{{ $item->ID_BALITA }}</td>
-                        <td>{{ $item->ID_USER }}</td>
-                        <td>{{ $item->TGL_POSYANDU }}</td>
-                        <td>{{ $item->BERAT_BADAN_BALITA }}</td>
-                        <td>{{ $item->TINGGI_BADAN }}</td>
+                        <td>{{ $item->ID_POSYANDU }}</td>
+                        <td>{{ $item->NAMA_BALITA }}</td>
+                        <td>{{ $item->NIK_ORANG_TUA }}</td>
+                        <td>{{ $item->NAMA_ORANG_TUA }}</td>
+                        <td>{{ $item->TGL_LAHIR_BALITA }}</td>
+                        <td>{{ $item->JENIS_KELAMIN_BALITA }}</td>
+                        <td>{{ $item->STATUS }}</td>
                         <td>{{ $item->DELETED_AT }}</td>
-                        <td><a type="button" class="btn btn-success" href="/historyPosyandu/restore/{{ $item->ID_HISTORY_POSYANDU }}" style="color: white" onclick="return confirm('Apakah anda ingin memulihkannya?')">Restore</a></td>                                         
-                </tr>
+                        <td><a type="button" class="btn btn-success" href="/balitauser/restore/{{ $item->ID_BALITA }}" style="color: white" onclick="return confirm('Apakah anda ingin memulihkannya?')">Restore</a></td>                                         
+                    </tr>
                     @endforeach       
                 </tbody>
             </table>

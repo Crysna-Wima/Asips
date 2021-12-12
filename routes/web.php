@@ -29,6 +29,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::group(['middleware' => ['cek_login:editor']], function() {
         Route::get('editor','App\Http\Controllers\EditorController@index')->name('editor');
     });
+
+    Route::group(['middleware' => ['cek_login:parent']], function() {
+        Route::get('parent','App\Http\Controllers\ParentController@index')->name('parent');
+    });
 });
 
 Route::get('/kecamatan', 'App\Http\Controllers\kecamatanController@index');
@@ -99,3 +103,39 @@ Route::post('users/update','App\Http\Controllers\usersController@update');
 Route::get('users/hapus/{id}','App\Http\Controllers\usersController@hapus');
 Route::get('users/restore','App\Http\Controllers\usersController@restore');
 Route::get('users/restore/{id}','App\Http\Controllers\usersController@back');
+
+Route::get('parents','App\Http\Controllers\parentsController@index');
+Route::post('parents/store','App\Http\Controllers\parentsController@store');
+Route::get('parents/edit/{id}','App\Http\Controllers\parentsController@edit');
+Route::post('parents/update','App\Http\Controllers\parentsController@update');
+Route::get('parents/hapus/{id}','App\Http\Controllers\parentsController@hapus');
+Route::get('parents/restore','App\Http\Controllers\parentsController@restore');
+Route::get('parents/restore/{id}','App\Http\Controllers\parentsController@back');
+
+Route::get('/balitauser', 'App\Http\Controllers\balitauserController@index');
+Route::post('/balitauser/store','App\Http\Controllers\balitauserController@store');
+Route::get('/balitauser/edit/{id}','App\Http\Controllers\balitauserController@edit');
+Route::post('/balitauser/update','App\Http\Controllers\balitauserController@update');
+Route::get('/balitauser/hapus/{id}', 'App\Http\Controllers\balitauserController@hapus');
+Route::get('/balitauser/restore', 'App\Http\Controllers\balitauserController@restore');
+Route::get('/balitauser/restore/{id}', 'App\Http\Controllers\balitauserController@back');
+
+Route::get('historyPosyanduuser','App\Http\Controllers\HistoryPosyanduuserController@index');
+Route::post('historyPosyanduuser/store','App\Http\Controllers\HistoryPosyanduuserController@store');
+Route::get('historyPosyanduuser/edit/{id}','App\Http\Controllers\HistoryPosyanduuserController@edit');
+Route::post('historyPosyanduuser/update','App\Http\Controllers\HistoryPosyanduuserController@update');
+Route::get('historyPosyanduuser/hapus/{id}','App\Http\Controllers\HistoryPosyanduuserController@hapus');
+Route::get('historyPosyanduuser/restore','App\Http\Controllers\HistoryPosyanduuserController@restore');
+Route::get('historyPosyanduuser/restore/{id}','App\Http\Controllers\HistoryPosyanduuserController@back');
+
+Route::get('parentsuser','App\Http\Controllers\parentsuserController@index');
+Route::post('parentsuser/store','App\Http\Controllers\parentsuserController@store');
+Route::get('parentsuser/edit/{id}','App\Http\Controllers\parentsuserController@edit');
+Route::post('parentsuser/update','App\Http\Controllers\parentsuserController@update');
+Route::get('parentsuser/hapus/{id}','App\Http\Controllers\parentsuserController@hapus');
+Route::get('parentsuser/restore','App\Http\Controllers\parentsuserController@restore');
+Route::get('parentsuser/restore/{id}','App\Http\Controllers\parentsuserController@back');
+
+Route::get('/balitaparent', 'App\Http\Controllers\balitaparentController@index');
+Route::get('/historyposyanduparent', 'App\Http\Controllers\historyposyanduparentController@index');
+

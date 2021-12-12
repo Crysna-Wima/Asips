@@ -31,7 +31,7 @@
                     <input type="password" class="form-control" name="password" required="required" placeholder="Nama Kecamatan" maxlength="20" minlength="3" value="password">
                 </div>
                 <div class="modal-footer">
-					<a href="/kecamatan" class="btn btn-secondary">Kembali</a>
+					<a href="/users" class="btn btn-secondary">Kembali</a>
 					<input type="submit" class="btn btn-primary" value="Simpan Data">
 				</div>
 			</form>

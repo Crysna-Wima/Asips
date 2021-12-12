@@ -88,6 +88,7 @@
                         <h6 class="collapse-header">Custom Tables :</h6>
                         <a class="collapse-item" href="users">user</a>
                         <a class="collapse-item" href="admins">admin</a>
+                        <a class="collapse-item" href="parents">parent</a>
                     </div>
                 </div>
             </li>

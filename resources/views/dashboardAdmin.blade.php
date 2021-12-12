@@ -64,12 +64,12 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Tables :</h6>
-                        <a href="balita" class="collapse-item">Balita</a>
+                        <a href="balitauser" class="collapse-item">Balita</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="historyPosyandu">
+                <a class="nav-link" href="historyPosyanduuser">
                     <i class="fas fa-fw fa-calendar"></i>
                     <span>History Posyandu</span></a>
             </li>
@@ -82,7 +82,7 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Tables :</h6>
-                        <a class="collapse-item" href="user">user</a>
+                        <a class="collapse-item" href="parentsuser">parent</a>
                     </div>
                 </div>
             </li>

@@ -45,7 +45,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="admin">
+                <a class="nav-link" href="editor">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -68,16 +68,12 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Tables :</h6>
-                        <a class="collapse-item" href="kecamatan">Kecamatan</a>
-                        <a class="collapse-item" href="kelurahan">Kelurahan</a>
-                        <a href="posyandu" class="collapse-item">Posyandu</a>
-                        <a href="role" class="collapse-item">Role</a>
-                        <a href="balita" class="collapse-item">Balita</a>
+                        <a href="balitauser" class="collapse-item">Balita</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="historyPosyandu">
+                <a class="nav-link" href="historyPosyanduuser">
                     <i class="fas fa-fw fa-calendar"></i>
                     <span>History Posyandu</span></a>
             </li>
@@ -90,9 +86,7 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Tables :</h6>
-                        <a class="collapse-item" href="users">user</a>
-                        <a class="collapse-item" href="admins">admin</a>
-                        <a class="collapse-item" href="parents">parent</a>
+                        <a class="collapse-item" href="parentsuser">parent</a>
                     </div>
                 </div>
             </li>
