@@ -10,11 +10,14 @@ class kelurahanController extends Controller
     public function index(){
 
         // mengambil data dari table kelurahan
-        $kelurahan = DB::table('kelurahans')->where('DELETED_AT',null)->get();
-        $jumlah = DB::table('kecamatans')->count();
+        $kecamatan = DB::table('kecamatans')->get();
+        $kelurahan = DB::table('kelurahans')
+            ->join('kecamatans', 'kelurahans.ID_KECAMATAN', '=', 'kecamatans.ID_KECAMATAN')
+            ->where('kelurahans.DELETED_AT',null)
+            ->get(); 
 
         // mengirim data kelurahan ke view index
-        return view('dashboard.kelurahan',['kelurahan' => $kelurahan],['jumlah' =>$jumlah]);
+        return view('dashboard.kelurahan',['kelurahan' => $kelurahan],['kecamatan' =>$kecamatan]);
     }
 
     public function restore(){
@@ -38,9 +41,9 @@ class kelurahanController extends Controller
         return redirect('/kelurahan')->with('tambah','Data berhasil ditambahkan');
     }
     public function edit($id){
-            $jumlah = DB::table('kecamatans')->count();
+            $kecamatan = DB::table('kecamatans')->get();
             $kelurahan = DB::table('kelurahans')->where('ID_KELURAHAN',$id)->get();
-            return view('edit.editKelurahan',['kelurahan' => $kelurahan],['jumlah' =>$jumlah]);
+            return view('edit.editKelurahan',['kelurahan' => $kelurahan],['kecamatan' =>$kecamatan]);
         }
     public function update(Request $request){
         $request ->validate([

@@ -10,11 +10,14 @@ class balitaController extends Controller
     public function index(){
 
         // mengambil data dari table balita
-        $balita = DB::table('balitas')->where('DELETED_AT',null)->get();
-        $jumlah = DB::table('posyandus')->count();
+        $posyandu = DB::table('posyandus')->get();
+        $balita = DB::table('balitas')
+            ->join('posyandus', 'balitas.ID_POSYANDU', '=', 'posyandus.ID_POSYANDU')
+            ->where('balitas.DELETED_AT',null)
+            ->get(); 
 
         // mengirim data balita ke view index
-        return view('dashboard.balita',['balita' => $balita],['jumlah' =>$jumlah]);
+        return view('dashboard.balita',['balita' => $balita],['posyandu' =>$posyandu]);
 
     }
 
@@ -46,9 +49,9 @@ class balitaController extends Controller
         return redirect('/balita')->with('tambah','Data berhasil ditambahkan');
     }
     public function edit($id){
-        $jumlah = DB::table('posyandus')->count();
+        $posyandu = DB::table('posyandus')->get();
         $balita = DB::table('balitas')->where('ID_BALITA',$id)->get();
-        return view('edit.editBalita',['balita' => $balita],['jumlah' =>$jumlah]);
+        return view('edit.editBalita',['balita' => $balita],['posyandu' =>$posyandu]);
     }
     public function update(Request $request){
         $request ->validate([

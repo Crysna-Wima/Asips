@@ -37,9 +37,13 @@
             <form action="/kelurahan/store" method="post">
                 {{ csrf_field() }}
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">ID Kecamatan</label>
-                    <input type="number" class="form-control" name="id_kecamatan" required="required" placeholder="1" max="{{ $jumlah }}" min="1">
-                </div>
+                    <label for="formGroupExampleInput" class="form-label">Nama Kecamatan</label>
+                    <select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="id_kecamatan">
+                        @foreach ($kecamatan as $item)
+                        <option value="{{ $item->ID_KECAMATAN }}">{{ $item->KECAMATAN }}</option>
+                        @endforeach
+                      </select>
+                </div>  
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Nama Kelurahan</label>
                     <input type="text" class="form-control" name="kelurahan" required="required" placeholder="Nama Kelurahan" maxlength="20" minlength="3">
@@ -66,7 +70,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID_Kelurahan</th>
-                                            <th>ID_kecamatan</th>
+                                            <th>kecamatan</th>
                                             <th>Kelurahan</th>
                                             <th>Created_at</th>
                                             <th>Updated at</th>
@@ -77,7 +81,7 @@
                                         @foreach ($kelurahan as $item)
                                         <tr>
                                             <td>{{ $item->ID_KELURAHAN }}</td>
-                                            <td>{{ $item->ID_KECAMATAN }}</td>
+                                            <td>{{ $item->KECAMATAN }}</td>
                                             <td>{{ $item->KELURAHAN }}</td>
                                             <td>{{ $item->CREATED_AT }}</td>
                                             <td>{{ $item->UPDATED_AT }}</td>

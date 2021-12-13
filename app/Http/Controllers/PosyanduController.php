@@ -10,11 +10,15 @@ class posyanduController extends Controller
     public function index(){
 
         // mengambil data dari table posyandu
-        $posyandu = DB::table('posyandus')->where('DELETED_AT',null)->get();
-        $jumlah = DB::table('kelurahans')->count();
+        // $posyandu = DB::table('posyandus')->where('DELETED_AT',null)->get();
+        $kelurahan = DB::table('kelurahans')->get();
+        $posyandu = DB::table('posyandus')
+            ->join('kelurahans', 'posyandus.ID_KELURAHAN', '=', 'kelurahans.ID_KELURAHAN')
+            ->where('posyandus.DELETED_AT',null)
+            ->get(); 
 
         // mengirim data posyandu ke view index
-        return view('dashboard.posyandu',['posyandu' => $posyandu],['jumlah' =>$jumlah]);
+        return view('dashboard.posyandu',['posyandu' => $posyandu],['kelurahan' =>$kelurahan]);
 
     }
 
@@ -45,9 +49,9 @@ class posyanduController extends Controller
     }
 
     public function edit($id){
-        $jumlah = DB::table('kelurahans')->count();
+        $kelurahan = DB::table('kelurahans')->get();
         $posyandu = DB::table('posyandus')->where('ID_POSYANDU',$id)->get();
-        return view('edit.editPosyandu',['posyandu' => $posyandu],['jumlah' =>$jumlah]);
+        return view('edit.editPosyandu',['posyandu' => $posyandu],['kelurahan' =>$kelurahan]);
     }
     public function update(Request $request){
         $request ->validate([

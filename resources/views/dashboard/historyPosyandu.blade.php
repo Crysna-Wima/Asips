@@ -35,14 +35,22 @@
         </div>
         <div class="modal-body">
             <form action="/historyPosyandu/store" method="post">
-                {{ csrf_field() }}
+                {{ csrf_field() }}>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">ID_BALITA</label>
-                    <input type="number" class="form-control" name="id_balita" required="required" placeholder="ID Balita" max="$jumlah" min="1" required="required">
+                    <label for="formGroupExampleInput" class="form-label">Nama Balita</label>
+                    <select class="form-select form-select-lg mb-3 form-control" required="required" aria-label=".form-select-lg example" name="id_balita">
+                        @foreach ($balita as $item)
+                        <option value="{{ $item->ID_BALITA }}">{{ $item->NAMA_BALITA }}</option>
+                        @endforeach
+                      </select>
                 </div>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">ID_USER</label>
-                    <input type="number" class="form-control" name="id_user" required="required" placeholder="ID User" max="$jumlah1" min="1" required="required">
+                    <label for="formGroupExampleInput" class="form-label">Nama Orang Tua</label>
+                    <select class="form-select form-select-lg mb-3 form-control" required="required" aria-label=".form-select-lg example" name="id_user">
+                        @foreach ($user as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                      </select>
                 </div>
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">TGL_POSYANDU</label>
@@ -78,8 +86,8 @@
                                     <thead>
                                         <tr>
                                             <th>ID_HISTORY_POSYANDU</th>
-                                            <th>ID_BALITA</th>
-                                            <th>ID_USER</th>
+                                            <th>BALITA</th>
+                                            <th>USER</th>
                                             <th>TGL_POSYANDU</th>
                                             <th>BERAT_BADAN_BALITA</th>
                                             <th>TINGGI_BADAN</th>
@@ -92,8 +100,8 @@
                                         @foreach ($history as $item)
                                         <tr>
                                             <td>{{ $item->ID_HISTORY_POSYANDU }}</td>
-                                            <td>{{ $item->ID_BALITA }}</td>
-                                            <td>{{ $item->ID_USER }}</td>
+                                            <td>{{ $item->NAMA_BALITA }}</td>
+                                            <td>{{ $item->name }}</td>
                                             <td>{{ $item->TGL_POSYANDU }}</td>
                                             <td>{{ $item->BERAT_BADAN_BALITA }}</td>
                                             <td>{{ $item->TINGGI_BADAN }}</td>

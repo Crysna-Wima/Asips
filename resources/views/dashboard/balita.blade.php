@@ -37,8 +37,12 @@
                 <form action="/balita/store" method="post">
                     {{ csrf_field() }}
                     <div class="mb-3">
-                        <label for="formGroupExampleInput" class="form-label">ID Posyandu</label>
-                        <input type="number" class="form-control" name="posyandu" required="required" placeholder="1" max="{{ $jumlah }}" min="1">
+                        <label for="formGroupExampleInput" class="form-label">Nama Posyandu</label>
+                        <select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="posyandu">
+                            @foreach ($posyandu as $item)
+                            <option value="{{ $item->ID_POSYANDU }}">{{ $item->NAMA_POSYANDU }}</option>
+                            @endforeach
+                          </select>
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Nama Balita</label>
@@ -87,7 +91,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID_Balita</th>
-                                            <th>ID_Posyandu</th>
+                                            <th>Posyandu</th>
                                             <th>Nama_Balita</th>
                                             <th>NIK_Orang_Tua</th>
                                             <th>Nama_Orang_Tua</th>
@@ -103,7 +107,7 @@
                                         @foreach ($balita as $item)
                                         <tr>
                                             <td>{{ $item->ID_BALITA }}</td>
-                                            <td>{{ $item->ID_POSYANDU }}</td>
+                                            <td>{{ $item->NAMA_POSYANDU }}</td>
                                             <td>{{ $item->NAMA_BALITA }}</td>
                                             <td>{{ $item->NIK_ORANG_TUA }}</td>
                                             <td>{{ $item->NAMA_ORANG_TUA }}</td>

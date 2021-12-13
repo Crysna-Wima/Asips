@@ -10,12 +10,16 @@ class HistoryPosyanduController extends Controller
     public function index(){
 
         // mengambil data dari table balita
-        $history = DB::table('history_posyandus')->where('DELETED_AT',null)->get();
-        $jumlah = DB::table('balitas')->count();
-        $jumlah1 = DB::table('users')->count();
+        $balita = DB::table('balitas')->get();
+        $user = DB::table('users')->where('level','parent')->get();
 
+        $history = DB::table('history_posyandus')
+            ->join('balitas', 'history_posyandus.ID_BALITA', '=', 'balitas.ID_BALITA')
+            ->where('history_posyandus.DELETED_AT',null)
+            ->join('users', 'history_posyandus.ID_USER', '=', 'id')
+            ->get(); 
         // mengirim data balita ke view index
-        return view('dashboard.historyPosyandu',['history' => $history],['jumlah1' => $jumlah1, 'jumlah1' =>$jumlah1]);
+        return view('dashboard.historyPosyandu',['history' => $history],['user' => $user, 'balita' =>$balita]);
 
     }
 
@@ -42,10 +46,16 @@ class HistoryPosyanduController extends Controller
         return redirect('/historyPosyandu')->with('tambah','Data berhasil ditambahkan');
     }
     public function edit($id){
-        $jumlah = DB::table('balitas')->count();
-        $jumlah1 = DB::table('users')->count();
-        $history = DB::table('history_posyandus')->where('ID_HISTORY_POSYANDU',$id)->get();
-        return view('edit.editHistoryPosyandu',['history' => $history, 'jumlah' => $jumlah,'jumlah1' => $jumlah1]);
+        $balita = DB::table('balitas')->get();
+        $user = DB::table('users')->where('level','parent')->get();
+
+        $history = DB::table('history_posyandus')
+            ->join('balitas', 'history_posyandus.ID_BALITA', '=', 'balitas.ID_BALITA')
+            ->where('DELETED_AT',null)
+            ->join('users', 'history_posyandus.ID_USER', '=', 'id')
+            ->get(); 
+        
+        return view('edit.editHistoryPosyandu',['history' => $history,'user' => $user, 'balita' =>$balita]);
     }
     public function update(Request $request){
         $request ->validate([

@@ -15,12 +15,20 @@
 			{{ csrf_field() }}
 			<input type="hidden" name="id" value="{{ $p->ID_HISTORY_POSYANDU }}"> <br/>
 			<div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">ID_BALITA</label>
-                <input type="number" class="form-control" name="id_balita" required="required" placeholder="ID Balita" max="$jumlah" min="1" required="required" value="{{ $p->ID_BALITA}}">
+                <label for="formGroupExampleInput" class="form-label">Nama Balita</label>
+                <select class="form-select form-select-lg mb-3 form-control" required="required" aria-label=".form-select-lg example" name="id_balita">
+                    @foreach ($balita as $item)
+                    <option value="{{ $item->ID_BALITA }}">{{ $item->NAMA_BALITA }}</option>
+                    @endforeach
+                  </select>
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">ID_USER</label>
-                <input type="number" class="form-control" name="id_user" required="required" placeholder="ID User" max="$jumlah1" min="1" required="required" value="{{ $p->ID_USER }}">
+                <label for="formGroupExampleInput" class="form-label">Nama Orang Tua</label>
+                <select class="form-select form-select-lg mb-3 form-control" required="required" aria-label=".form-select-lg example" name="id_user">
+                    @foreach ($user as $item)
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endforeach
+                  </select>
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">TGL_POSYANDU</label>

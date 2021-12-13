@@ -15,8 +15,12 @@
 				{{ csrf_field() }}
 				<input type="hidden" name="id" value="{{ $p->ID_BALITA }}"> <br/>
 				<div class="mb-3">
-					<label for="formGroupExampleInput" class="form-label">ID Posyandu</label>
-					<input type="number" class="form-control" name="posyandu" required="required" placeholder="1" value="{{ $p->ID_POSYANDU }}" max="{{ $jumlah }}">
+					<label for="formGroupExampleInput" class="form-label">Nama Posyandu</label>
+					<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="posyandu">
+						@foreach ($posyandu as $item)
+						<option value="{{ $item->ID_POSYANDU }}">{{ $item->NAMA_POSYANDU }}</option>
+						@endforeach
+					  </select>
 				</div>
 				<div class="mb-3">
 					<label for="formGroupExampleInput" class="form-label">Nama Balita</label>
@@ -40,7 +44,7 @@
 					<input type="radio" name="jk" required="required" value="P" value="{{ $p->TGL_LAHIR_BALITA }}">  Perempuan <br>
 				</div>
 				<div class="mb-3">
-					<label for="formGroupExampleInput" class="form-label">Status</label>
+					<label for="formGroupExampleInput" class="form-label">Status</label><br>
 					<input type="radio" name="status" required="required" value="1">  Sehat <br><input type="radio" name="status" required="required" value="0">  Stunting
 				</div>
 				<div class="modal-footer">

@@ -37,8 +37,12 @@
             <form action="/posyandu/store" method="post">
                 {{ csrf_field() }}
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">ID Kelurahan</label>
-                    <input type="number" class="form-control" name="kelurahan" required="required" placeholder="1" max="{{ $jumlah }}" min="1">
+                    <label for="formGroupExampleInput" class="form-label">Nama Kelurahan</label>
+                    <select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="kelurahan">
+                        @foreach ($kelurahan as $item)
+                        <option value="{{ $item->ID_KELURAHAN }}">{{ $item->KELURAHAN }}</option>
+                        @endforeach
+                      </select>
                 </div>
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Nama Posyandu</label>
@@ -70,7 +74,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID_Posyandu</th>
-                                            <th>ID_Kelurahan</th>
+                                            <th>Kelurahan</th>
                                             <th>Nama_Posyandu</th>
                                             <th>Alamat</th>
                                             <th>Created_at</th>
@@ -82,7 +86,7 @@
                                         @foreach ($posyandu as $item)
                                         <tr>
                                             <td>{{ $item->ID_POSYANDU }}</td>
-                                            <td>{{ $item->ID_KELURAHAN }}</td>
+                                            <td>{{ $item->KELURAHAN }}</td>
                                             <td>{{ $item->NAMA_POSYANDU }}</td>
                                             <td>{{ $item->ALAMAT_POSYANDU }}</td>
                                             <td>{{ $item->CREATED_AT }}</td>
