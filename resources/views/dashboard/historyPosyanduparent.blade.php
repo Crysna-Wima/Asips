@@ -9,9 +9,9 @@
                                     <thead>
                                         <tr>
                                             <th>ID_BALITA</th>
-                                            <th>TGL_POSYANDU</th>
-                                            <th>BERAT_BADAN_BALITA</th>
-                                            <th>TINGGI_BADAN</th>
+                                            <th>TGL_PEMERIKSAAN</th>
+                                            <th>BB_BALITA</th>
+                                            <th>TB_BALITA</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -19,8 +19,8 @@
                                         <tr>
                                             <td>{{ $item->ID_BALITA }}</td>
                                             <td>{{ $item->TGL_POSYANDU }}</td>
-                                            <td>{{ $item->BERAT_BADAN_BALITA }}</td>
-                                            <td>{{ $item->TINGGI_BADAN }}</td>
+                                            <td>{{ $item->BERAT_BADAN_BALITA }} <?php echo "ONS" ?></td>
+                                            <td>{{ $item->TINGGI_BADAN }} <?php echo "CM" ?></td>
                                         </tr>
                                         @endforeach                                       
                                     </tbody>

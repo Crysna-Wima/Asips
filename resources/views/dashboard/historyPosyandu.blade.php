@@ -88,9 +88,9 @@
                                             <th>ID_HISTORY_POSYANDU</th>
                                             <th>BALITA</th>
                                             <th>USER</th>
-                                            <th>TGL_POSYANDU</th>
-                                            <th>BERAT_BADAN_BALITA</th>
-                                            <th>TINGGI_BADAN</th>
+                                            <th>TGL_PEMERIKSAAN</th>
+                                            <th>BB_BALITA</th>
+                                            <th>TB_BALITA</th>
                                             <th>CREATED_AT</th>
                                             <th>UPDATED_AT</th>
                                             <th>ACTION</th>
@@ -103,8 +103,8 @@
                                             <td>{{ $item->NAMA_BALITA }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->TGL_POSYANDU }}</td>
-                                            <td>{{ $item->BERAT_BADAN_BALITA }}</td>
-                                            <td>{{ $item->TINGGI_BADAN }}</td>
+                                            <td>{{ $item->BERAT_BADAN_BALITA }} <?php echo "ONS" ?> </td>
+                                            <td>{{ $item->TINGGI_BADAN }} <?php echo "CM" ?> </td>
                                             <td>{{ $item->CREATED_AT }}</td>
                                             <td>{{ $item->UPDATED_AT }}</td>
                                             <td>
