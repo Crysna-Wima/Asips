@@ -62,9 +62,9 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID_Role</th>
-                                            <th>Role</th>
-                                            <th>Action</th>
+                                            <th>ID ROLE</th>
+                                            <th>ROLE</th>
+                                            <th>ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody>

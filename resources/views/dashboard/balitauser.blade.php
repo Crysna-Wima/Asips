@@ -1,6 +1,6 @@
 @extends('layout.tablesuser')
-@section('tables')
-<h1 class="h3 mb-2 text-gray-800">Tables Balita</h1>
+@section('tablesuser')
+<h1 class="h3 mb-2 text-gray-800">Tabel Balita</h1>
 @if (session()->has('tambah'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{ session('tambah') }}
@@ -34,23 +34,27 @@
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Balita</h5>
             </div>
             <div class="modal-body">
-                <form action="/balita/store" method="post">
+                <form action="/balitauser/store" method="post">
                     {{ csrf_field() }}
                     <div class="mb-3">
-                        <label for="formGroupExampleInput" class="form-label">ID Posyandu</label>
-                        <input type="number" class="form-control" name="posyandu" required="required" placeholder="1" max="{{ $jumlah }}" min="1">
+                        <label for="formGroupExampleInput" class="form-label">Nama Posyandu</label>
+                        <select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="posyandu">
+                            @foreach ($posyandu as $item)
+                            <option value="{{ $item->ID_POSYANDU }}">{{ $item->NAMA_POSYANDU }}</option>
+                            @endforeach
+                          </select>
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Nama Balita</label>
                         <input type="text" class="form-control" name="nama" required="required" placeholder="Nama Balita" maxlength="50" onkeyup="this.value = this.value.toUpperCase();">
                     </div>
                     <div class="mb-3">
-                        <label for="formGroupExampleInput" class="form-label">NIK Orang Tua</label>
-                        <input class="form-control" name="NIK" maxlength="16" required="required" maxlength="16" min="16">
-                    </div>
-                    <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Nama Orang Tua</label>
-                        <input type="text" class="form-control" name="Ortu" required="required" placeholder="Ortu" maxlength="50" onkeyup="this.value = this.value.toUpperCase();">
+                        <select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="posyandu">
+                            @foreach ($users as $item)
+                            <option value="{{ $item->NIK }}">{{ $item->name }}</option>
+                            @endforeach
+                          </select>
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label"> Tanggal lahir Balita</label>
@@ -78,40 +82,41 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahBalita">Tambah</button>
-                            <a type="button" class="btn btn-primary" href="/balita/restore">Restore</a>
+                            <div>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahBalita">Tambah</button>
+                                <a type="button" class="btn btn-danger" href="/balita/print">Ekspor PDF</a>    
+                            </div>
+                            <a type="button" class="btn btn-primary" href="/balitauser/restore">Restore</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID_Balita</th>
-                                            <th>ID_Posyandu</th>
-                                            <th>Nama_Balita</th>
-                                            <th>NIK_Orang_Tua</th>
-                                            <th>Nama_Orang_Tua</th>
-                                            <th>Tgl_Lahir_Balita</th>
-                                            <th>Jenis_Kelamin_Balita</th>
-                                            <th>Status</th>
-                                            <th>Created_at</th>
-                                            <th>Update_at</th>
-                                            <th>Action</th>
+                                            <th>ID BALITA</th>
+                                            <th>POSYANDU</th>
+                                            <th>NAMA BALITA</th>
+                                            <th>NAMA ORANG TUA</th>
+                                            <th>TANGGAL LAHIR BALITA</th>
+                                            <th>JENIS KELAMIN BALITA</th>
+                                            <th>STATUS</th>
+                                            <th>CREATED AT</th>
+                                            <th>UPDATED AT</th>
+                                            <th>ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($balita as $item)
                                         <tr>
                                             <td>{{ $item->ID_BALITA }}</td>
-                                            <td>{{ $item->ID_POSYANDU }}</td>
+                                            <td>{{ $item->NAMA_POSYANDU }}</td>
                                             <td>{{ $item->NAMA_BALITA }}</td>
-                                            <td>{{ $item->NIK_ORANG_TUA }}</td>
-                                            <td>{{ $item->NAMA_ORANG_TUA }}</td>
+                                            <td>{{ $item->name }}</td>
                                             <td>{{ $item->TGL_LAHIR_BALITA }}</td>
                                             <td>
                                                 <?php 
-                                                if ($item->JENIS_KELAMIN_BALITA=="L"){echo "Laki-Laki";}
-                                                if ($item->JENIS_KELAMIN_BALITA=="P"){echo "Perempuan";}
+                                                if ($item->JENIS_KELAMIN_BALITA=="L"){echo "LAKI-LAKI";}
+                                                if ($item->JENIS_KELAMIN_BALITA=="P"){echo "PEREMPUAN";}
                                                 ?>
                                             </td>
                                             <td>

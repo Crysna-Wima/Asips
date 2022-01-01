@@ -7,22 +7,42 @@ use Illuminate\Support\Facades\DB;
 
 class balitaController extends Controller
 {
+    public function count(){
+        $jumlah = DB::table('balitas')->count();
+        return $jumlah;
+    }
     public function index(){
 
         // mengambil data dari table balita
         $posyandu = DB::table('posyandus')->get();
+        $users = DB::table('users')->where('level', 'parent')->get();
         $balita = DB::table('balitas')
             ->join('posyandus', 'balitas.ID_POSYANDU', '=', 'posyandus.ID_POSYANDU')
+            ->join('users', 'balitas.NIK_ORANG_TUA', '=', 'users.NIK')
             ->where('balitas.DELETED_AT',null)
             ->get(); 
 
         // mengirim data balita ke view index
-        return view('dashboard.balita',['balita' => $balita],['posyandu' =>$posyandu]);
+        return view('dashboard.balita')->with('balita',$balita)->with('posyandu', $posyandu)->with('users',$users);
 
     }
 
+    public function print(){
+        $balita = DB::table('balitas')
+            ->join('posyandus', 'balitas.ID_POSYANDU', '=', 'posyandus.ID_POSYANDU')
+            ->join('users', 'balitas.NIK_ORANG_TUA', '=', 'users.NIK')
+            ->where('balitas.DELETED_AT',null)
+            ->get();
+        return view('print.balitaprint')->with('balita',$balita);
+    }
+
     public function restore(){
-        $restorebalita = DB::table('balitas')->where('DELETED_AT','!=',null)->get();
+        $restorebalita = DB::table('balitas as a')
+            ->select('a.*','b.NAMA_POSYANDU as posyandu','c.name as nama')
+            ->join('posyandus as b', 'a.ID_POSYANDU', '=', 'b.ID_POSYANDU')
+            ->join('users as c', 'a.NIK_ORANG_TUA', '=', 'c.NIK')
+            ->where('a.DELETED_AT','!=',null)            
+            ->get();
         return view('restore.restoreBalita',['restorebalita' => $restorebalita]);
     }
 
@@ -37,9 +57,8 @@ class balitaController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         DB::table('balitas')->insert([
             'ID_POSYANDU' => $request->posyandu,
-            'NAMA_BALITA' => $request->nama,
+            'NAMA_BALITA' => strtoupper($request->nama),
             'NIK_ORANG_TUA' => $request->NIK,
-            'NAMA_ORANG_TUA' => $request->Ortu,
             'TGL_LAHIR_BALITA' => $request->lahir,
             'JENIS_KELAMIN_BALITA' => $request->jk,
             'STATUS' => $request->status,
@@ -51,7 +70,8 @@ class balitaController extends Controller
     public function edit($id){
         $posyandu = DB::table('posyandus')->get();
         $balita = DB::table('balitas')->where('ID_BALITA',$id)->get();
-        return view('edit.editBalita',['balita' => $balita],['posyandu' =>$posyandu]);
+        $users = DB::table('users')->where('level', 'parent')->get();
+        return view('edit.editBalita')->with('balita',$balita)->with('posyandu', $posyandu)->with('users',$users);
     }
     public function update(Request $request){
         $request ->validate([
@@ -60,9 +80,8 @@ class balitaController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         DB::table('balitas')->where('ID_BALITA',$request->id)->update([
             'ID_POSYANDU' => $request->posyandu,
-            'NAMA_BALITA' => $request->nama,
+            'NAMA_BALITA' => strtoupper($request->nama),
             'NIK_ORANG_TUA' => $request->NIK,
-            'NAMA_ORANG_TUA' => $request->Ortu,
             'TGL_LAHIR_BALITA' => $request->lahir,
             'JENIS_KELAMIN_BALITA' => $request->jk,
             'STATUS' => $request->status,

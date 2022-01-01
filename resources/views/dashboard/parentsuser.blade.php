@@ -1,6 +1,6 @@
 @extends('layout.tablesuser')
-@section('tables')
-<h1 class="h3 mb-2 text-gray-800">Tables parent</h1>
+@section('tablesuser')
+<h1 class="h3 mb-2 text-gray-800">Tabel Parent</h1>
 @if (session()->has('tambah'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{ session('tambah') }}
@@ -38,19 +38,19 @@
                 {{ csrf_field() }}
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Nama parent</label>
-                    <input type="text" class="form-control" name="name" required="required" placeholder="Nama Kecamatan" maxlength="20" minlength="3">
+                    <input type="text" class="form-control" name="name" required="required" placeholder="Nama Parent" maxlength="20" minlength="3">
                 </div>
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Username</label>
-                    <input type="text" class="form-control" name="username" required="required" placeholder="Nama Kecamatan" maxlength="20" minlength="3">
+                    <input type="text" class="form-control" name="username" required="required" placeholder="Username" maxlength="20" minlength="3">
                 </div>         
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" required="required" placeholder="Nama Kecamatan" maxlength="20" minlength="3">
+                    <input type="email" class="form-control" name="email" required="required" placeholder="Email" maxlength="20" minlength="3">
                 </div>    
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">password</label>
-                    <input type="password" class="form-control" name="password" required="required" placeholder="Nama Kecamatan" maxlength="20" minlength="3">
+                    <input type="password" class="form-control" name="password" required="required" placeholder="Password" maxlength="20" minlength="3">
                 </div>
                 </div>
                 <div class="modal-footer">
@@ -74,13 +74,13 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Nama</th>
-                                            <th>Username</th>
-                                            <th>Email</th>
-                                            <th>Password</th>
-                                            <th>Created_at</th>
-                                            <th>Updated at</th>
-                                            <th>Action</th>
+                                            <th>NAMA</th>
+                                            <th>USERNAME</th>
+                                            <th>EMAIL</th>
+                                            <th>PASSWORD</th>
+                                            <th>CREATED AT</th>
+                                            <th>UPDATED AT</th>
+                                            <th>ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class posyanduController extends Controller
 {
+    public function count(){
+        $jumlah = DB::table('posyandus')->count();
+        return $jumlah;
+    }
     public function index(){
 
         // mengambil data dari table posyandu
@@ -23,7 +27,11 @@ class posyanduController extends Controller
     }
 
     public function restore(){
-        $restoreposyandu = DB::table('posyandus')->where('DELETED_AT','!=',null)->get();
+        $restoreposyandu = DB::table('posyandus as a')
+            ->select('a.*', 'b.KELURAHAN as kelurahan')
+            ->join('kelurahans as b', 'a.ID_KELURAHAN', '=', 'b.ID_KELURAHAN')
+            ->where('a.DELETED_AT','!=',null)
+            ->get();
         return view('restore.restorePosyandu',['restoreposyandu' => $restoreposyandu]);
     }
 
@@ -40,8 +48,8 @@ class posyanduController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         DB::table('posyandus')->insert([
             'ID_KELURAHAN' => $request->kelurahan,
-            'NAMA_POSYANDU' => $request->nama,
-            'ALAMAT_POSYANDU' => $request->alamat,
+            'NAMA_POSYANDU' => strtoupper($request->nama),
+            'ALAMAT_POSYANDU' => strtoupper($request->alamat),
             'CREATED_AT' => date('Y-m-d H:i:s'),
             'UPDATED_AT' => date('Y-m-d H:i:s'),
         ]);
@@ -62,8 +70,8 @@ class posyanduController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         DB::table('posyandus')->where('ID_POSYANDU',$request->id)->update([
             'ID_KELURAHAN' => $request->kelurahan,
-            'NAMA_POSYANDU' => $request->nama,
-            'ALAMAT_POSYANDU' => $request->alamat,
+            'NAMA_POSYANDU' => strtoupper($request->nama),
+            'ALAMAT_POSYANDU' => strtoupper($request->alamat),
             'UPDATED_AT' => date('Y-m-d H:i:s'),
         ]);
         return redirect('/posyandu')->with('edit','Data berhasil diubah');

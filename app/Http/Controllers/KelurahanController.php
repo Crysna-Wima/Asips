@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class kelurahanController extends Controller
 {
+    public function count(){
+        $jumlah = DB::table('kelurahans')->count();
+        return $jumlah;
+    }
     public function index(){
 
         // mengambil data dari table kelurahan
@@ -21,7 +25,12 @@ class kelurahanController extends Controller
     }
 
     public function restore(){
-        $restorekelurahan = DB::table('kelurahans')->where('DELETED_AT','!=',null)->get();
+        $restorekelurahan = DB::table('kelurahans as a')
+            ->select('a.*', 'b.KECAMATAN as nama')
+            ->join('kecamatans as b', 'a.ID_KECAMATAN', '=', 'b.ID_KECAMATAN')
+            ->where('a.DELETED_AT','!=',null)
+            ->get(); 
+
         return view('restore.restoreKelurahan',['restorekelurahan' => $restorekelurahan]);
     }
 
@@ -34,7 +43,7 @@ class kelurahanController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         DB::table('kelurahans')->insert([
             'ID_KECAMATAN' => $request->id_kecamatan,
-            'KELURAHAN' => $request->kelurahan,
+            'KELURAHAN' => strtoupper($request->kelurahan),
             'CREATED_AT' => date('Y-m-d H:i:s'),
             'UPDATED_AT' => date('Y-m-d H:i:s'),
         ]);
@@ -53,14 +62,15 @@ class kelurahanController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         DB::table('kelurahans')->where('ID_KELURAHAN',$request->id)->update([
             'ID_KECAMATAN' => $request->id_kecamatan,
-            'KELURAHAN' => $request->kelurahan,
+            'KELURAHAN' => strtoupper($request->kelurahan),
             'UPDATED_AT' => date('Y-m-d H:i:s'),
         ]);
         return redirect('/kelurahan')->with('edit','Data berhasil diubah');
     } 
     public function hapus($id){
         date_default_timezone_set('Asia/Jakarta');
-    	DB::table('kelurahans')->where('ID_KELURAHAN',$id)->update([
+    	DB::table('kelurahans')->where('ID_KELURAHAN',$id)
+        ->update([
             'DELETED_AT' => date('Y-m-d H:i:s')
         ]);
  

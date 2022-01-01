@@ -8,6 +8,6 @@ class ParentController extends Controller
 {
     public function index()
     {
-        return redirect('/historyposyanduparent');
+        return redirect('/balitaparent');
     }
 }

@@ -1,6 +1,6 @@
 @extends('layout.tablesuser')
-@section('tables')
-<h1 class="h3 mb-2 text-gray-800">Tables History Posyandu</h1>
+@section('tablesuser')
+<h1 class="h3 mb-2 text-gray-800">Tabel History Posyandu</h1>
 @if (session()->has('tambah'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{ session('tambah') }}
@@ -37,24 +37,24 @@
             <form action="/historyPosyanduuser/store" method="post">
                 {{ csrf_field() }}
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">ID_BALITA</label>
-                    <input type="number" class="form-control" name="id_balita" required="required" placeholder="ID Balita" max="$jumlah" min="1" required="required">
+                    <label for="formGroupExampleInput" class="form-label">Nama Balita</label>
+                    <select class="form-select form-select-lg mb-3 form-control" required="required" aria-label=".form-select-lg example" name="id_balita">
+                        @foreach ($balita as $item)
+                        <option value="{{ $item->ID_BALITA }}">{{ $item->NAMA_BALITA }}</option>
+                        @endforeach
+                      </select>
                 </div>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">ID_USER</label>
-                    <input type="number" class="form-control" name="id_user" required="required" placeholder="ID User" max="$jumlah1" min="1" required="required">
-                </div>
-                <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">TGL_POSYANDU</label>
+                    <label for="formGroupExampleInput" class="form-label">TGL POSYANDU</label>
                     <input type="datetime-local" class="form-control" name="tgl_posyandu" required="required">
                 </div>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">BERAT_BADAN_BALITA</label>
-                    <input type="text" class="form-control" name="berat_badan" required="required" placeholder="Berat badan" maxlength="20" minlength="1">
+                    <label for="formGroupExampleInput" class="form-label">BERAT BADAN BALITA (SATUAN GRAM)</label>
+                    <input type="number" class="form-control" name="berat_badan" required="required" placeholder="Berat badan" maxlength="20" minlength="1">
                 </div> 
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">TINGGI_BADAN</label>
-                    <input type="text" class="form-control" name="tinggi_badan" required="required" placeholder="Nama Kecamatan" maxlength="20" minlength="1">
+                    <label for="formGroupExampleInput" class="form-label">TINGGI BADAN (SATUAN CENTIMETER)</label>
+                    <input type="number" class="form-control" name="tinggi_badan" required="required" placeholder="Tinggi badan" maxlength="20" minlength="1">
                 </div>             
                 </div>
                 <div class="modal-footer">
@@ -69,7 +69,10 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahKecamatan">Tambah</button>
+                            <div>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahKecamatan">Tambah</button>
+                                <a type="button" class="btn btn-danger" href="/historyPosyandu/print">Ekspor PDF</a>    
+                            </div>
                             <a type="button" class="btn btn-primary" href="/historyPosyanduuser/restore">Restore</a>
                         </div>
                         <div class="card-body">
@@ -77,14 +80,14 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID_HISTORY_POSYANDU</th>
-                                            <th>ID_BALITA</th>
-                                            <th>ID_USER</th>
-                                            <th>TGL_POSYANDU</th>
-                                            <th>BERAT_BADAN_BALITA</th>
-                                            <th>TINGGI_BADAN</th>
-                                            <th>CREATED_AT</th>
-                                            <th>UPDATED_AT</th>
+                                            <th>ID HISTORY POSYANDU</th>
+                                            <th>BALITA</th>
+                                            <th>NAMA ORANG TUA</th>
+                                            <th>TGL POSYANDU</th>
+                                            <th>BERAT BADAN BALITA</th>
+                                            <th>TINGGI BADAN</th>
+                                            <th>CREATED AT</th>
+                                            <th>UPDATED AT</th>
                                             <th>ACTION</th>
                                         </tr>
                                     </thead>
@@ -92,11 +95,11 @@
                                         @foreach ($history as $item)
                                         <tr>
                                             <td>{{ $item->ID_HISTORY_POSYANDU }}</td>
-                                            <td>{{ $item->ID_BALITA }}</td>
-                                            <td>{{ $item->ID_USER }}</td>
+                                            <td>{{ $item->NAMA_BALITA }}</td>
+                                            <td>{{ $item->name }}</td>
                                             <td>{{ $item->TGL_POSYANDU }}</td>
-                                            <td>{{ $item->BERAT_BADAN_BALITA }}</td>
-                                            <td>{{ $item->TINGGI_BADAN }}</td>
+                                            <td>{{ $item->BERAT_BADAN_BALITA }} gram</td>
+                                            <td>{{ $item->TINGGI_BADAN }} cm</td>
                                             <td>{{ $item->CREATED_AT }}</td>
                                             <td>{{ $item->UPDATED_AT }}</td>
                                             <td>

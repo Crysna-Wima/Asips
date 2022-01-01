@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Edit parent</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
-<body style="background-color: rgb(116, 205, 243)">
-	<div class="card text-right" style="width:400px; align-items: center; margin-left: 32%; margin-top: 2%; padding: 20px">
-		<div>
-			<h5 style="color: rgb(13, 156, 218)">Edit parent</h5>
+@extends('layout.tablesuser')
+@section('tablesuser')
+	<div class="card shadow col-6 mx-auto" style="margin-bottom: 10%; margin-top: 5%">
+		<div class="card-header py-3 d-flex justify-content-between">
+			<h4>Edit Parent</h4>
 		</div>
 		<div class="card-body">
 			@foreach($parent as $p)
@@ -31,12 +26,11 @@
                     <input type="password" class="form-control" name="password" required="required" placeholder="Nama Kecamatan" maxlength="20" minlength="3" value="password">
                 </div>
                 <div class="modal-footer">
-					<a href="/parentsuser" class="btn btn-secondary">Kembali</a>
+					<a href="/parents" class="btn btn-secondary">Kembali</a>
 					<input type="submit" class="btn btn-primary" value="Simpan Data">
 				</div>
 			</form>
 			@endforeach 
 		</div>
 	</div>
-</body>
-</html>
+@endsection

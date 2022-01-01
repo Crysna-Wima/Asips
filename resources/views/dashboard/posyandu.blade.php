@@ -1,6 +1,6 @@
 @extends('layout.tables')
 @section('tables')
-<h1 class="h3 mb-2 text-gray-800">Tables Posyandu</h1>
+<h1 class="h3 mb-2 text-gray-800">Tabel Posyandu</h1>
 @if (session()->has('tambah'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{ session('tambah') }}
@@ -73,13 +73,13 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID_Posyandu</th>
-                                            <th>Kelurahan</th>
-                                            <th>Nama_Posyandu</th>
-                                            <th>Alamat</th>
-                                            <th>Created_at</th>
-                                            <th>Update_at</th>
-                                            <th>Action</th>
+                                            <th>ID POSYANDU</th>
+                                            <th>KELURAHAN</th>
+                                            <th>NAMA POSYANDU</th>
+                                            <th>ALAMAT</th>
+                                            <th>CREATED AT</th>
+                                            <th>UPDATED AT</th>
+                                            <th>ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody>

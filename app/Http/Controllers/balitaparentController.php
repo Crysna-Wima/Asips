@@ -12,8 +12,11 @@ class balitaparentController extends Controller
     public function index(){
 
         // mengambil data dari table balita
-        $posyandu = DB::table('history_posyandus')->where('ID_USER', Auth::user()->id)->select('ID_HISTORY_POSYANDU')->get();
-        $balita = DB::table('balitas')->whereIn('ID_BALITA',$posyandu)->get();
+        $balita = DB::table('balitas')
+        ->join('posyandus','balitas.ID_POSYANDU','=','posyandus.ID_POSYANDU')
+        ->where('NIK_ORANG_TUA',Auth::user()->NIK)
+        ->get();
+
         // mengirim data balita ke view index
         return view('dashboard.balitaparent',['balita' => $balita]);
 

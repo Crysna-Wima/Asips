@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Edit Role</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
-<body style="background-color: rgb(116, 205, 243)">
-	<div class="card text-right" style="width:400px; align-items: center; margin-left: 32%; margin-top: 2%; padding: 20px">
-		<div>
-			<h5 style="color: rgb(13, 156, 218)">Edit Role</h5>
+@extends('layout.tables')
+@section('tables')
+	<div class="card shadow col-6 mx-auto" style="margin-bottom: 15%; margin-top: 10%">
+		<div class="card-header py-3 d-flex justify-content-between">
+			<h4>Edit Role</h4>
 		</div>
 		<div class="card-body">
 			@foreach($role as $p)
@@ -23,8 +18,7 @@
 					<input type="submit" class="btn btn-primary" value="Simpan Data">
 				</div>
 			</form>
-			@endforeach 
+			@endforeach
 		</div>
 	</div>
-</body>
-</html>
+@endsection

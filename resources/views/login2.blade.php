@@ -113,5 +113,6 @@
             src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
             crossorigin="anonymous"></script>
         <script src="{{url('assets/js/scripts.js')}}"></script>
+            <script type="text/javascript" src="assets/js/login1.js"></script>
     </body>
 </html>

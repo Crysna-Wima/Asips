@@ -32,7 +32,7 @@ class roleController extends Controller
             'role' => 'required|max:20'
         ]);
         DB::table('role')->insert([
-            'ROLE' => $request->role,
+            'ROLE' => strtoupper($request->role),
         ]);
         return redirect('/role')->with('tambah','Data berhasil ditambahkan');
     }
@@ -46,7 +46,7 @@ class roleController extends Controller
             'role' => 'required|max:20'
         ]);
         DB::table('role')->where('ID_ROLE',$request->id)->update([
-            'ROLE' => $request->role,
+            'ROLE' => strtoupper($request->role),
         ]);
         return redirect('/role')->with('edit','Data berhasil diubah');
     } 

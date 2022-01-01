@@ -15,28 +15,40 @@ class HistoryPosyanduController extends Controller
 
         $history = DB::table('history_posyandus')
             ->join('balitas', 'history_posyandus.ID_BALITA', '=', 'balitas.ID_BALITA')
+            ->join('users', 'balitas.NIK_ORANG_TUA', '=','users.NIK')
             ->where('history_posyandus.DELETED_AT',null)
-            ->join('users', 'history_posyandus.ID_USER', '=', 'id')
             ->get(); 
         // mengirim data balita ke view index
         return view('dashboard.historyPosyandu',['history' => $history],['user' => $user, 'balita' =>$balita]);
 
     }
 
+    public function print(){
+        $history = DB::table('history_posyandus')
+            ->join('balitas', 'history_posyandus.ID_BALITA', '=', 'balitas.ID_BALITA')
+            ->join('users', 'balitas.NIK_ORANG_TUA', '=','users.NIK')
+            ->where('history_posyandus.DELETED_AT',null)
+            ->get(); 
+        return view('print.historiprint')->with('history',$history);
+    }
+
     public function restore(){
-        $restorehistory = DB::table('history_posyandus')->where('DELETED_AT','!=',null)->get();
+        $restorehistory = DB::table('history_posyandus as a')
+        ->select('a.*', 'b.NAMA_BALITA as balita', 'c.name as nama')
+        ->join('balitas as b', 'a.ID_BALITA', '=', 'b.ID_BALITA')
+        ->join('users as c', 'b.NIK_ORANG_TUA', '=','c.NIK')
+        ->where('a.DELETED_AT','!=',null)
+        ->get();
         return view('restore.restoreHistoryPosyandu',['restorehistory' => $restorehistory]);
     }
 
     public function store(Request $request){
         $request ->validate([
             'id_balita' => 'required|exists:balitas,ID_BALITA',
-            'id_user' => 'required|exists:users,id',
         ]);
         date_default_timezone_set('Asia/Jakarta');
         DB::table('history_posyandus')->insert([
             'ID_BALITA' => $request->id_balita,
-            'ID_USER' => $request->id_user,
             'TINGGI_BADAN' => $request->tinggi_badan,
             'TGL_POSYANDU' => $request->tgl_posyandu,
             'BERAT_BADAN_BALITA' => $request->berat_badan,
@@ -47,25 +59,17 @@ class HistoryPosyanduController extends Controller
     }
     public function edit($id){
         $balita = DB::table('balitas')->get();
-        $user = DB::table('users')->where('level','parent')->get();
-
-        $history = DB::table('history_posyandus')
-            ->join('balitas', 'history_posyandus.ID_BALITA', '=', 'balitas.ID_BALITA')
-            ->where('DELETED_AT',null)
-            ->join('users', 'history_posyandus.ID_USER', '=', 'id')
-            ->get(); 
+        $history = DB::table('history_posyandus')->where('ID_HISTORY_POSYANDU',$id)->get();
         
-        return view('edit.editHistoryPosyandu',['history' => $history,'user' => $user, 'balita' =>$balita]);
+        return view('edit.editHistoryPosyandu',['history' => $history, 'balita' =>$balita]);
     }
     public function update(Request $request){
         $request ->validate([
             'id_balita' => 'required|exists:balitas,ID_BALITA',
-            'id_user' => 'required|exists:users,id',
         ]);
         date_default_timezone_set('Asia/Jakarta');
         DB::table('history_posyandus')->where('ID_HISTORY_POSYANDU',$request->id)->update([
             'ID_BALITA' => $request->id_balita,
-            'ID_USER' => $request->id_user,
             'TINGGI_BADAN' => $request->tinggi_badan,
             'TGL_POSYANDU' => $request->tgl_posyandu,
             'BERAT_BADAN_BALITA' => $request->berat_badan,

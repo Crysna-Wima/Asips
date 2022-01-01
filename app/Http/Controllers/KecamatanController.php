@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\kecamatan;
 
+
 class kecamatanController extends Controller
 {
+    public function count(){
+        $jumlah = DB::table('kecamatans')->count();
+        return $jumlah;
+    }
     public function index(){
         $kecamatan = DB::table('kecamatans')->where('DELETED_AT',null)->get();
         return view('dashboard.kecamatan',['kecamatan' => $kecamatan]);
@@ -21,7 +26,7 @@ class kecamatanController extends Controller
         ]);
         date_default_timezone_set('Asia/Jakarta');
         DB::table('kecamatans')->insert([
-            'KECAMATAN' => $request->kecamatan,
+            'KECAMATAN' => strtoupper($request->kecamatan),
             'CREATED_AT' => date('Y-m-d H:i:s'),
             'UPDATED_AT' => date('Y-m-d H:i:s'),
         ]);
@@ -39,7 +44,7 @@ class kecamatanController extends Controller
         ]);
         date_default_timezone_set('Asia/Jakarta');
         DB::table('kecamatans')->where('ID_KECAMATAN',$request->id)->update([
-            'KECAMATAN' => $request->kecamatan,
+            'KECAMATAN' => strtoupper($request->kecamatan),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
         return redirect('/kecamatan')->with('edit','Data berhasil diubah');

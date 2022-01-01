@@ -18,7 +18,7 @@ class adminsController extends Controller
         ]);
         date_default_timezone_set('Asia/Jakarta');
         DB::table('users')->insert([
-            'name' => $request->name,
+            'name' => strtoupper($request->name),
             'username' => $request->username,
             'email' => $request->email,
             'level' => 'admin',
@@ -38,7 +38,7 @@ class adminsController extends Controller
         ]);
         date_default_timezone_set('Asia/Jakarta');
         DB::table('users')->where('id',$request->id)->update([
-            'name' => $request->name,
+            'name' => strtoupper($request->name),
             'username' => $request->username,
             'email' => $request->email,
             'level' => 'admin',
