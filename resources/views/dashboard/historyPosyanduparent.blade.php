@@ -11,18 +11,11 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-<<<<<<< HEAD
                                             <th>BALITA</th>
                                             <th>NAMA POSYANDU</th>
                                             <th>TGL POSYANDU</th>
                                             <th>BERAT BADAN BALITA</th>
                                             <th>TINGGI BADAN</th>
-=======
-                                            <th>ID_BALITA</th>
-                                            <th>TGL_PEMERIKSAAN</th>
-                                            <th>BB_BALITA</th>
-                                            <th>TB_BALITA</th>
->>>>>>> 82be296843cde8dff828da80ad21b91ddb598b27
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -31,13 +24,8 @@
                                             <td>{{ $item->NAMA_BALITA }}</td>
                                             <td>{{$item->NAMA_POSYANDU}}</td>
                                             <td>{{ $item->TGL_POSYANDU }}</td>
-<<<<<<< HEAD
-                                            <td>{{ $item->BERAT_BADAN_BALITA }} gram</td>
-                                            <td>{{ $item->TINGGI_BADAN }} cm</td>
-=======
-                                            <td>{{ $item->BERAT_BADAN_BALITA }} <?php echo "ONS" ?></td>
-                                            <td>{{ $item->TINGGI_BADAN }} <?php echo "CM" ?></td>
->>>>>>> 82be296843cde8dff828da80ad21b91ddb598b27
+                                            <td>{{ $item->BERAT_BADAN_BALITA }} ONS</td>
+                                            <td>{{ $item->TINGGI_BADAN }} CM</td>
                                         </tr>
                                         @endforeach                                       
                                     </tbody>
