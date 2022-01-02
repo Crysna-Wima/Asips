@@ -1,49 +1,33 @@
 @extends('layout.tableparent')
-@section('tables')
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex justify-content-between">
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID BALITA</th>
-                                            <th>POSYANDU</th>
-                                            <th>NAMA BALITA</th>
-                                            <th>TANGGAL LAHIR BALITA</th>
-                                            <th>JENIS KELAMIN BALITA</th>
-                                            <th>STATUS</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($balita as $item)
-                                        <tr>
-                                            <td>{{ $item->ID_BALITA }}</td>
-                                            <td>{{ $item->NAMA_POSYANDU }}</td>
-                                            <td>{{ $item->NAMA_BALITA }}</td>
-                                            <td>{{ $item->TGL_LAHIR_BALITA }}</td>
-                                            <td>
-                                                <?php 
-                                                if ($item->JENIS_KELAMIN_BALITA=="L"){echo "LAKI-LAKI";}
-                                                if ($item->JENIS_KELAMIN_BALITA=="P"){echo "PEREMPUAN";}
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?php 
-                                                if ($item->STATUS==1){echo "SEHAT";}
-                                                if ($item->STATUS==0){echo "STUNTING";}
-                                                ?>
-                                            </td>
-                                        </tr>
-                                        @endforeach                                       
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
+@section('content')
+<div class="container">    
+    @foreach ($balita as $item)
+    <div class="card">
+        <div class="card-header">
+            <h1>Data Balita</h1>
+        </div>
+        <div class="card-body">
+        <div class="row mx-auto">
+            <div class="col-5" style="padding-left: 15%">
+                <img class="rounded-circle mx-auto" style="max-width: 70%"
+                src="{{url('assets/img/undraw_profile.svg')}}">
+            </div>
+            <div class="col-4">
+                <p>Nama Balita&emsp;&ensp;: {{ $item->NAMA_BALITA }}</p>
+                <p>Posyandu&emsp;&emsp;&ensp;: {{ $item->NAMA_POSYANDU }}</p>
+                <p>Tanggal Lahir&emsp;: {{ $item->TGL_LAHIR_BALITA }}</p>
+                <p>Jenis Kelamin&emsp;: <?php 
+                    if ($item->JENIS_KELAMIN_BALITA=="L"){echo "LAKI-LAKI";}
+                    if ($item->JENIS_KELAMIN_BALITA=="P"){echo "PEREMPUAN";}
+                    ?></p>
+                <p>Status&emsp;&emsp;&emsp;&emsp;: <?php 
+                    if ($item->STATUS==1){echo "SEHAT";}
+                    if ($item->STATUS==0){echo "STUNTING";}
+                    ?></p>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach                                           
+</div>
 @endsection

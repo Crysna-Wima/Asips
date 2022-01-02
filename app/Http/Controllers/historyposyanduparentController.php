@@ -15,6 +15,7 @@ class historyposyanduparentController extends Controller
         ->join('posyandus','balitas.ID_POSYANDU','=','posyandus.ID_POSYANDU')
         ->where('history_posyandus.DELETED_AT',null)
         ->where('balitas.NIK_ORANG_TUA',Auth::user()->NIK)
+        ->orderByDesc('history_posyandus.TGL_POSYANDU')
         ->get(); 
         return view('dashboard.historyPosyanduparent',['history' => $history]);
 
