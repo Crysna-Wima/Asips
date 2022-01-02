@@ -82,12 +82,21 @@
                                         <tr>
                                             <th>ID HISTORY POSYANDU</th>
                                             <th>BALITA</th>
+<<<<<<< HEAD
                                             <th>NAMA ORANG TUA</th>
                                             <th>TGL POSYANDU</th>
                                             <th>BERAT BADAN BALITA</th>
                                             <th>TINGGI BADAN</th>
                                             <th>CREATED AT</th>
                                             <th>UPDATED AT</th>
+=======
+                                            <th>USER</th>
+                                            <th>TGL_PEMERIKSAAN</th>
+                                            <th>BB_BALITA</th>
+                                            <th>TB_BALITA</th>
+                                            <th>CREATED_AT</th>
+                                            <th>UPDATED_AT</th>
+>>>>>>> 82be296843cde8dff828da80ad21b91ddb598b27
                                             <th>ACTION</th>
                                         </tr>
                                     </thead>
@@ -98,8 +107,13 @@
                                             <td>{{ $item->NAMA_BALITA }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->TGL_POSYANDU }}</td>
+<<<<<<< HEAD
                                             <td>{{ $item->BERAT_BADAN_BALITA }} gram</td>
                                             <td>{{ $item->TINGGI_BADAN }} cm</td>
+=======
+                                            <td>{{ $item->BERAT_BADAN_BALITA }} <?php echo "ONS" ?> </td>
+                                            <td>{{ $item->TINGGI_BADAN }} <?php echo "CM" ?> </td>
+>>>>>>> 82be296843cde8dff828da80ad21b91ddb598b27
                                             <td>{{ $item->CREATED_AT }}</td>
                                             <td>{{ $item->UPDATED_AT }}</td>
                                             <td>
